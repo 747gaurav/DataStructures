@@ -232,9 +232,20 @@ void list::swap()
 
 void list::reverseRecursive(Node * head)
 {
-	if(head == NULL)
+	Node * now = head;
+	Node * nxt = head->link;
+	if(nxt == NULL)
+	{
+		head = now;
+		p = now;
 		return;
-	else 
+	}
+	else
+	{
+		reverseRecursive(nxt);
+	}
+	now->link = NULL;
+	nxt->link = now;
 }
 
 int main()
@@ -245,7 +256,7 @@ do
 {
 	cout<<endl<<" Operations on List.."<<endl;
 	cout<<"	1.Insertion"<<endl<<"	2.Deletion"<<endl<<"	3.Display"<<endl<<"	4.Seek"<<endl;
-	cout<<"	5.SWAP"<<endl<<"	6.Exit"<<endl;
+	cout<<"	5.SWAP"<<endl<<"	6. Recursive Reverse"<<endl<<"	7.Exit"<<endl;
 	cout<<" Enter ur choice:";
 	cin>>ch;
 
@@ -333,6 +344,16 @@ do
 		l->swap();
 		break;
 	case 6:
+		for(int i = 1;i<=4;i++)
+		{
+			l->inslast(i);
+		}
+		cout<<endl<<"Original list";
+		l->disp();
+		cout<<endl<<"After recursive reversal ="<<endl;
+		l->disp();
+		break;
+	case 7:
 		exit(1);
 
 	default:
