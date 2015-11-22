@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 
 using namespace std;
 
@@ -17,8 +18,13 @@ public:
 	void delbeg();
 	void dellast();
 	void disp();
+	void reverseRecursive(node * head);
 	void swap();
 	int seek(int);
+	node* getHead()
+	{
+		return p;
+	}
 	list(){p=NULL;}
 	~list();
 };
@@ -230,10 +236,10 @@ void list::swap()
 	disp();
 }
 
-void list::reverseRecursive(Node * head)
+void list::reverseRecursive(node * head)
 {
-	Node * now = head;
-	Node * nxt = head->link;
+	node * now = head;
+	node * nxt = head->link;
 	if(nxt == NULL)
 	{
 		head = now;
@@ -350,6 +356,7 @@ do
 		}
 		cout<<endl<<"Original list";
 		l->disp();
+		l->reverseRecursive(l->getHead());
 		cout<<endl<<"After recursive reversal ="<<endl;
 		l->disp();
 		break;
